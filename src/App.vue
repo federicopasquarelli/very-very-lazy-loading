@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="container">
+      <h1 class="w-full">image lazy loading</h1>
+    </div>
     <div class="container" v-if="ready">
       <div v-for="image in images" :key="image.id" class="cover">
         <img
@@ -21,7 +24,7 @@ export default Vue.extend({
   data() {
     return {
       images: [],
-      ready: false
+      ready: false,
     };
   },
   computed: {},
@@ -33,26 +36,30 @@ export default Vue.extend({
       await fetch(
         `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=200`
       )
-        .then(response => response.json())
-        .then(response => {
+        .then((response) => response.json())
+        .then((response) => {
           this.images = response.hits;
           this.ready = true;
         })
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 });
 </script>
 
 <style lang="scss">
-* {
-  box-sizing: border-box;
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+.w-full {
+  width: 100%;
 }
 .container {
   max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
   > div {
     width: 33.33333%;
     height: 0;
