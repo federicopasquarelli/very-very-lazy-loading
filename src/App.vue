@@ -2,14 +2,14 @@
   <div id="app" v-random-color.bg.text>
     <div class="title">
       <h1 style="filter: invert(1)">image lazy loading</h1>
+      <h1 v-is-intersecting.lazy="coseacaso">ciao</h1>
     </div>
-    <div class="container" v-if="ready">
-      <div v-for="image in images" :key="image.id" class="cover">
-        <img
-          :src="image.previewURL"
-          v-lazy-bg="image.largeImageURL"
-          :id="image.id"
-        />
+    <div class="container" v-if="ready" style="padding-bottom: 100px">
+      <div v-for="image in images" :key="image.id * Date.now()" class="cover">
+        <img :src="image.previewURL" v-is-intersecting:[image.largeImageURL].unique.lazy="loadImage" />
+      </div>
+      <div v-is-intersecting="fetchImages">
+        <h1 v-is-intersecting.lazy="coseacaso">ciao</h1>
       </div>
     </div>
   </div>
@@ -23,8 +23,9 @@ export default Vue.extend({
   components: {},
   data() {
     return {
-      images: [],
-      ready: false
+      images: [] as any[],
+      ready: false,
+      page: 0,
     };
   },
   computed: {},
@@ -33,17 +34,27 @@ export default Vue.extend({
   },
   methods: {
     async fetchImages() {
+      this.page = this.page + 1;
+      console.log("fetching", this.page);
+      this.images = [...this.images, ...this.images];
+      if (this.images.length) return;
       await fetch(
-        `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=200`
+        `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=200&page=${this.page}`
       )
-        .then(response => response.json())
-        .then(response => {
-          this.images = response.hits;
-          this.ready = true;
+        .then((response) => response.json())
+        .then((response) => {
+          this.images = [...this.images, ...response.hits];
+          if (!this.ready) this.ready = true;
         })
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+    loadImage(e: HTMLImageElement, callback: any) {
+      e.setAttribute("src", callback);
+    },
+    coseacaso() {
+      console.log("coseacaso");
+    },
+  },
 });
 </script>
 
@@ -63,10 +74,10 @@ body {
   color: inherit;
 }
 .container {
-  max-width: 903px;
+  max-width: 400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 1px;
   text-align: center;
   @media (max-width: 768px) {
