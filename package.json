@@ -6,13 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "uuid": "^3.4.0",
-    "verylazyloading": "file:../verylazyloading",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-fragment": "^1.5.1",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

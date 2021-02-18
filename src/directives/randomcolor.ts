@@ -1,7 +1,7 @@
-import Vue from "vue";
+import { DirectiveOptions } from "vue/types/umd";
 
 const interval = {} as any;
-Vue.directive("random-color", {
+export const randomcolor = {
   bind: function(el, binding) {
     if (!el.id) el.id = "color-" + Math.random();
     if (interval[el.id]) return;
@@ -25,5 +25,5 @@ Vue.directive("random-color", {
   unbind: function(el) {
     clearInterval(interval[el.id]);
     delete interval[el.id];
-  },
-});
+  }
+} as DirectiveOptions;
