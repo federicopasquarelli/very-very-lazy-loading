@@ -32,14 +32,6 @@ export default Vue.extend({
   components: {
     Scroll
   },
-  data() {
-    return {
-      images: [] as any[],
-      ready: false,
-      page: 0,
-      loader: false
-    };
-  }
 });
 </script>
 
