@@ -53,12 +53,16 @@ body {
   transition: 0.5s linear;
   color: #fff;
 }
+.navigation {
+  flex-wrap: wrap;
+}
 .header {
   display: flex;
   justify-content: center;
-  padding: 50px 0;
+  padding: 25px 0;
+  flex-wrap: wrap;
   li {
-    margin: 0 25px;
+    margin: 25px;
   }
   a {
     color: inherit;
