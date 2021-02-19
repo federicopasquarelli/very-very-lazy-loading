@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app-wrapper" v-random-color.bg.text>
+    <div class="app-wrapper">
       <div class="header">
         <ul class="flex navigation">
           <li>
@@ -13,10 +13,13 @@
             <router-link to="/opacity">Opacity</router-link>
           </li>
           <li>
-            <router-link to="/about">About</router-link>
+            <router-link to="/instant">Instant</router-link>
           </li>
           <li>
-            <router-link to="/instant">Instant</router-link>
+            <router-link to="/basic">Basic</router-link>
+          </li>
+          <li>
+            <router-link to="/about">About</router-link>
           </li>
         </ul>
       </div>
@@ -48,6 +51,7 @@ body {
 .app-wrapper {
   min-height: 100vh;
   transition: 0.5s linear;
+  color: #fff;
 }
 .header {
   display: flex;

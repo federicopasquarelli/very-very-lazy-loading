@@ -50,6 +50,7 @@ export default Vue.extend({
         .then(response => {
           this.images = [...this.images, ...response.hits];
           if (!this.ready) this.ready = true;
+          this.loader = false;
         })
         .catch(err => console.log(err));
     },
