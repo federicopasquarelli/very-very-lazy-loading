@@ -15,6 +15,9 @@
           <li>
             <router-link to="/about">About</router-link>
           </li>
+          <li>
+            <router-link to="/instant">Instant</router-link>
+          </li>
         </ul>
       </div>
       <router-view></router-view>
@@ -30,7 +33,7 @@ import Scroll from "@/components/Scroll.vue";
 export default Vue.extend({
   name: "App",
   components: {
-    Scroll
+    Scroll,
   },
 });
 </script>
@@ -63,17 +66,25 @@ body {
   justify-content: center;
 }
 .title {
-  font-size: 3rem;
-  font-weight: bold;
-  filter: invert(100%);
   text-align: center;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
+  filter: invert(100%);
+  > * {
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
 }
 .container {
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1px;
   text-align: center;
   @media (max-width: 768px) {
