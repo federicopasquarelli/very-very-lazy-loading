@@ -14,7 +14,7 @@
         together
       </p>
     </div>
-    <div class="container" v-if="ready">
+    <div class="grid-container" v-if="ready">
       <div
         v-for="(image, index) in images"
         :key="image.id * Date.now()"
@@ -27,11 +27,7 @@
         />
       </div>
     </div>
-    <div
-      v-is-intersecting.instant="fetchImages"
-      class="flex"
-      style="filter: invert(1)"
-    >
+    <div v-is-intersecting.instant="fetchImages" class="flex">
       <spinner v-if="loader"></spinner>
     </div>
   </div>
@@ -63,7 +59,7 @@ export default Vue.extend({
       )
         .then((response) => response.json())
         .then((response) => {
-          this.images = [...this.images, ...response.hits];
+          this.images.push(...response.hits);
           if (!this.ready) this.ready = true;
           this.loader = false;
         })

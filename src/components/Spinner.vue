@@ -19,11 +19,11 @@ export default Vue.extend({
 .spinner {
   --size: 75px;
   --clr-bg: #272324;
-  --clr1: #bbbb88;
-  --clr2: #ccc68d;
-  --clr3: #eedd99;
-  --clr4: #eec290;
-  --clr5: #eeaa88;
+  --clr1: #e2b4b1;
+  --clr2: #e09f9a;
+  --clr3: #e28882;
+  --clr4: #e27169;
+  --clr5: #e85a4f;
   --animation-duration: 650ms;
   position: relative;
   width: var(--size);

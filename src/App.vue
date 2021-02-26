@@ -21,6 +21,9 @@
           <li>
             <router-link to="/about">About</router-link>
           </li>
+          <li>
+            <router-link to="/docs">Docs</router-link>
+          </li>
         </ul>
       </div>
       <router-view></router-view>
@@ -42,16 +45,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-body {
-  font-family: "Quicksand", sans-serif;
-}
-* {
-  box-sizing: border-box;
-}
 .app-wrapper {
   min-height: 100vh;
   transition: 0.5s linear;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 }
 .navigation {
   flex-wrap: wrap;
@@ -66,7 +65,6 @@ body {
   }
   a {
     color: inherit;
-    filter: invert(100%);
   }
 }
 .flex {
@@ -76,24 +74,21 @@ body {
 .title {
   text-align: center;
   padding-bottom: 30px;
-  filter: invert(100%);
   > * {
     margin-bottom: 20px;
   }
   h1 {
-    font-size: 3rem;
     font-weight: bold;
   }
   h4 {
-    font-size: 1.5rem;
   }
 }
-.container {
+.grid-container {
   max-width: 800px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1px;
+  grid-gap: 2px;
   text-align: center;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -104,5 +99,14 @@ body {
     position: relative;
     overflow: hidden;
   }
+}
+img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>

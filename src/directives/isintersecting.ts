@@ -1,59 +1,93 @@
 import { v4 as uuidv4 } from "uuid";
 import { DirectiveOptions } from "vue/types/umd";
-interface ObjectLiteral {
-  [key: string]: number;
-}
-const counter = {} as ObjectLiteral;
+
+const counter = new WeakMap();
+const reverseCounter = new WeakMap();
+const wasIntersecting = new WeakMap();
 const params = {
   handlers: new WeakMap(),
   debouncers: new WeakMap(),
   instant: new WeakMap(),
   uniques: new WeakMap(),
-  callbacks: new WeakMap()
+  callbacks: new WeakMap(),
+  current: new WeakMap(),
 };
-const clear = (id: string) => {
-  if (!counter[id]) return;
-  clearTimeout(counter[id]);
-  delete counter[id];
+const clear = (el: Element) => {
+  if (!counter.get(el)) return;
+  clearTimeout(counter.get(el));
+  counter.delete(el);
 };
-const unobserve = (
-  target: Element,
-  id: string,
-  observer: IntersectionObserver
-) => {
+const clearReverse = (el: Element) => {
+  if (!reverseCounter.get(el)) return;
+  clearTimeout(reverseCounter.get(el));
+  reverseCounter.delete(el);
+};
+const unobserve = (target: Element, observer: IntersectionObserver) => {
   observer.unobserve(target);
-  if (id) clear(id);
+  clear(target);
+};
+const execute = (el: Element, self?: IntersectionObserver) => {
+  const isUnique = params.uniques.get(el);
+  const getCallback = params.callbacks.get(el);
+  const sendResponse = params.handlers.get(el);
+  const current = params.current.get(el);
+  if (!wasIntersecting.get(el)) wasIntersecting.set(el, true);
+  if (current) {
+    sendResponse[0](el, getCallback);
+  } else {
+    sendResponse(el, getCallback);
+  }
+  if (isUnique && self) unobserve(el, self);
+};
+const executeCurrent = (el: Element) => {
+  const sendResponse = params.handlers.get(el);
+  const getCallback = params.callbacks.get(el);
+  const current = params.current.get(el);
+  if (current) {
+    sendResponse[1](el, getCallback);
+  }
 };
 const observer = new IntersectionObserver((entries, self) => {
   entries.forEach((entry: IntersectionObserverEntry) => {
-    const getTimeoutId = params.debouncers.get(entry.target);
     const instant = params.instant.get(entry.target);
 
-    const execute = () => {
-      const isUnique = params.uniques.get(entry.target);
-      const getCallback = params.callbacks.get(entry.target);
-      const sendResponse = params.handlers.get(entry.target);
-      sendResponse(entry.target, getCallback);
-      if (isUnique) unobserve(entry.target, getTimeoutId, self);
-    };
-
-    // check if the entry is intersecting with the viewport
-    if (entry.isIntersecting) {
-      // if the entry has the instant modifier we execute the callback immediately
-      // we need to apply this behaviour by default without the modifier
-      if (instant) execute();
-      // skip the setTimeout in case the entry is not instant
-      if (counter[getTimeoutId] || instant) return;
-      // debounce the callback, so it's only triggered if the element is intersecting for more than 500ms
-      // in case we don't want the callback to be triggered even after a very short intersection time
-      counter[getTimeoutId] = setTimeout(() => {
-        execute();
-        clear(getTimeoutId);
-      }, 500);
-    } else {
-      clear(getTimeoutId);
+    // if is not intersecting clear the entry timeout for the lazyloader
+    if (!entry.isIntersecting) {
+      if (wasIntersecting.get(entry.target)) {
+        if (instant) {
+          executeCurrent(entry.target);
+        }
+        if (reverseCounter.get(entry.target) || instant) return;
+        reverseCounter.set(
+          entry.target,
+          setTimeout(() => {
+            executeCurrent(entry.target);
+            clearReverse(entry.target);
+          }, 500)
+        );
+      }
+      clear(entry.target);
       return;
     }
+
+    // if the entry has the instant modifier we execute the callback immediately
+    // we need to apply this behaviour by default without the modifier
+    if (instant) {
+      execute(entry.target);
+    }
+
+    // skip the setTimeout in case the entry is instant
+    if (counter.get(entry.target) || instant) return;
+
+    // debounce the callback, so it's only triggered if the element is intersecting for more than 500ms
+    // in case we don't want the callback to get triggered even after a very short intersection time
+    counter.set(
+      entry.target,
+      setTimeout(() => {
+        execute(entry.target, self);
+        clear(entry.target);
+      }, 500)
+    );
   });
 });
 
@@ -62,11 +96,12 @@ export const isIntersecting = {
     params.callbacks.set(el, binding.arg);
     params.instant.set(el, binding.modifiers.instant);
     params.uniques.set(el, binding.modifiers.unique);
+    params.current.set(el, binding.modifiers.current);
     params.debouncers.set(el, uuidv4());
     params.handlers.set(el, binding.value);
     observer.observe(el);
   },
   unbind: function(el) {
     observer.unobserve(el);
-  }
+  },
 } as DirectiveOptions;
