@@ -11,6 +11,6 @@ export default [
   { path: "/backgrounds", component: Backgrounds },
   { path: "/opacity", component: Opacity },
   { path: "/about", component: About },
-  { path: "/instant", component: Page },
+  { path: "/instant", component: Instant },
   { path: "/basic", component: Basic },
 ];
