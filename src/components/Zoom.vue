@@ -20,11 +20,11 @@ export default Vue.extend({
     return {
       blocks: Array(100).fill({ visible: false }),
       loader: false,
-      ready: false,
+      ready: false
     };
   },
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
     fetchBlocks() {
@@ -32,15 +32,15 @@ export default Vue.extend({
       setTimeout(() => {
         this.blocks.push(...Array(100).fill({ visible: false }));
         this.loader = false;
-      }, 500);
+      }, 1000);
     },
     loadBackground(e: HTMLElement) {
       e.classList.add("zoom-in");
     },
     unloadBackground(e: HTMLElement) {
       e.classList.remove("zoom-in");
-    },
-  },
+    }
+  }
 });
 </script>
 <style lang="scss" scoped>

@@ -7,7 +7,7 @@ const getDefaultState = () => {
     page: 0,
     loader: false,
     images: [] as any[],
-    ready: false,
+    ready: false
   };
 };
 
@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
     },
     setReset(state) {
       state = { ...getDefaultState() };
-    },
+    }
   },
   actions: {
     async fetchImages({ commit, getters }) {
@@ -40,30 +40,30 @@ export const store = new Vuex.Store({
       await fetch(
         `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=100&page=${getters.getPage}&image_type=photo&category=places`
       )
-        .then((response) => response.json())
-        .then((response) => {
+        .then(response => response.json())
+        .then(response => {
           commit("setImages", response.hits);
           if (!getters.getReady) commit("setReady", true);
           commit("setLoader", false);
         })
-        .catch((err) => {
+        .catch(err => {
           commit("setLoader", false);
           console.log(err);
         });
-    },
+    }
   },
   getters: {
-    getImages: (state) => {
+    getImages: state => {
       return state.images;
     },
-    getPage: (state) => {
+    getPage: state => {
       return state.page;
     },
-    getReady: (state) => {
+    getReady: state => {
       return state.ready;
     },
-    getLoader: (state) => {
+    getLoader: state => {
       return state.loader;
-    },
-  },
+    }
+  }
 });

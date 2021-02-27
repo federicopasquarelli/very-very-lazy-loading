@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="grid-container" v-if="getReady">
-      <div
-        v-for="(image, index) in getImages"
-        :key="image.id"
-        class="cover"
-      >
+      <div v-for="(image, index) in getImages" :key="image.id" class="cover">
         <img
           :id="'image-' + index"
           :src="image.previewURL"
@@ -25,16 +21,16 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "lazy-images",
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
     ...mapActions(["fetchImages"]),
     loadImage(e: HTMLImageElement, callback: string) {
       e.setAttribute("src", callback);
-    },
+    }
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"]),
-  },
+    ...mapGetters(["getImages", "getReady", "getLoader"])
+  }
 });
 </script>

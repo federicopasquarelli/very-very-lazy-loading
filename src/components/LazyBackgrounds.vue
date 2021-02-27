@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="grid-container" v-if="getReady">
-      <div
-        v-for="(image, index) in getImages"
-        :key="image.id"
-        class="cover"
-      >
+      <div v-for="(image, index) in getImages" :key="image.id" class="cover">
         <div
           :id="`image-${index}`"
           class="full bg-cover"

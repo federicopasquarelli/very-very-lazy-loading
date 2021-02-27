@@ -16,14 +16,14 @@ export default Vue.extend({
   props: {
     show: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
     spin() {
       this.$emit("is-loading");
-    },
-  },
+    }
+  }
 });
 </script>
 

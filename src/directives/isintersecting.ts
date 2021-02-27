@@ -102,6 +102,15 @@ export const isIntersecting = {
     observer.observe(el);
   },
   unbind: function(el) {
+    params.callbacks.delete(el);
+    params.instant.delete(el);
+    params.uniques.delete(el);
+    params.current.delete(el);
+    params.debouncers.delete(el);
+    params.handlers.delete(el);
+    counter.delete(el);
+    reverseCounter.delete(el);
+    wasIntersecting.delete(el);
     observer.unobserve(el);
   }
 } as DirectiveOptions;

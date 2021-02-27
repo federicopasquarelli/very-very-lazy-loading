@@ -4,11 +4,7 @@
       <h1>custom css property</h1>
     </div>
     <div class="grid-container" v-if="getReady">
-      <div
-        v-for="(image, index) in getImages"
-        :key="image.id"
-        class="cover"
-      >
+      <div v-for="(image, index) in getImages" :key="image.id" class="cover">
         <img
           :id="'image-' + index"
           :src="image.previewURL"
@@ -29,7 +25,7 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "Opacity",
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
     ...mapActions(["fetchImages"]),
@@ -37,11 +33,11 @@ export default Vue.extend({
       e.setAttribute("src", callback);
       e.style.opacity = "1";
       e.style.filter = "invert(0%)";
-    },
+    }
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"]),
-  },
+    ...mapGetters(["getImages", "getReady", "getLoader"])
+  }
 });
 </script>
 
