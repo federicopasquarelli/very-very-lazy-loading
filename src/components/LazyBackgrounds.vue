@@ -28,17 +28,17 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "LazyBackgrounds",
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
     ...mapActions(["fetchImages"]),
     loadBackground(e: HTMLElement, callback: string) {
       e.style.backgroundImage = `url(${callback})`;
-    },
+    }
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"]),
-  },
+    ...mapGetters(["getImages", "getReady", "getLoader"])
+  }
 });
 </script>
 

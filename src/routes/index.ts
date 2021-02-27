@@ -1,9 +1,9 @@
-import Images from "@/views/Images.vue";
-import Backgrounds from "@/views/Backgrounds.vue";
-import Opacity from "@/views/Opacity.vue";
-import About from "@/views/About.vue";
-import Instant from "@/views/Instant.vue";
-import Basic from "@/views/Basic.vue";
+const Images = () => import("@/views/Images.vue");
+const Backgrounds = () => import("@/views/Backgrounds.vue");
+const Opacity = () => import("@/views/Opacity.vue");
+const About = () => import("@/views/About.vue");
+const Instant = () => import("@/views/Instant.vue");
+const Basic = () => import("@/views/Basic.vue");
 
 export default [
   { path: "/", component: Images },

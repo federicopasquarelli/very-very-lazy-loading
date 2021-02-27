@@ -36,6 +36,6 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters(["getImages", "getReady", "getLoader"])
-  },
+  }
 });
 </script>
