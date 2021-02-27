@@ -9,10 +9,7 @@ export default `
         ></div>
       </div>
     </div>
-    <div v-is-intersecting.instant="fetchImages" class="flex">
-      <br />
-      <spinner v-if="loader"></spinner>
-    </div>
+    <spinner :show="loader" @is-loading="fetchBlocks"></spinner>
   </div>
 </template>
 <script lang="ts">
@@ -24,27 +21,27 @@ export default Vue.extend({
     return {
       blocks: Array(100).fill({ visible: false }),
       loader: false,
-      ready: false,
+      ready: false
     };
   },
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
-    fetchImages() {
+    fetchBlocks() {
       this.loader = true;
       setTimeout(() => {
         this.blocks.push(...Array(100).fill({ visible: false }));
         this.loader = false;
-      }, 500);
+      }, 1000);
     },
     loadBackground(e: HTMLElement) {
       e.classList.add("zoom-in");
     },
     unloadBackground(e: HTMLElement) {
       e.classList.remove("zoom-in");
-    },
-  },
+    }
+  }
 });
 </script>
 `;
