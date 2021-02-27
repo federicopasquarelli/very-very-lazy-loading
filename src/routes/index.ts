@@ -1,9 +1,13 @@
-const Images = () => import("@/views/Images.vue");
-const Backgrounds = () => import("@/views/Backgrounds.vue");
-const Opacity = () => import("@/views/Opacity.vue");
-const About = () => import("@/views/About.vue");
-const Instant = () => import("@/views/Instant.vue");
-const Basic = () => import("@/views/Basic.vue");
+const Images = () =>
+  import(/* webpackChunkName: "images" */ "@/views/Images.vue");
+const Backgrounds = () =>
+  import(/* webpackChunkName: "backgrounds" */ "@/views/Backgrounds.vue");
+const Opacity = () =>
+  import(/* webpackChunkName: "opacity" */ "@/views/Opacity.vue");
+const About = () => import(/* webpackChunkName: "about" */ "@/views/About.vue");
+const Instant = () =>
+  import(/* webpackChunkName: "instant" */ "@/views/Instant.vue");
+const Basic = () => import(/* webpackChunkName: "basic" */ "@/views/Basic.vue");
 
 export default [
   { path: "/", component: Images },
