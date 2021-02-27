@@ -107,8 +107,9 @@ img {
   object-fit: cover;
 }
 .main-content {
-  width: 800px;
+  width: 810px;
   max-width: 100%;
   margin: 0 auto;
+  padding: 0 5px;
 }
 </style>
