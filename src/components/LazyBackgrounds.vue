@@ -3,7 +3,7 @@
     <div class="grid-container" v-if="getReady">
       <div
         v-for="(image, index) in getImages"
-        :key="image.id * Date.now()"
+        :key="image.id"
         class="cover"
       >
         <div
@@ -14,9 +14,7 @@
         ></div>
       </div>
     </div>
-    <div v-is-intersecting.instant="fetchImages" class="flex">
-      <spinner v-if="getLoader"></spinner>
-    </div>
+    <spinner :show="getLoader" @is-loading="fetchImages"></spinner>
   </div>
 </template>
 

@@ -34,5 +34,6 @@ export default Vue.extend({
 <style scoped lang="scss">
 .code {
   font-size: 12px;
+  margin-bottom: 50px;
 }
 </style>

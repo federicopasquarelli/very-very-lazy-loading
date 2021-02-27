@@ -3,19 +3,18 @@
     <div class="grid-container" v-if="getReady">
       <div
         v-for="(image, index) in getImages"
-        :key="image.id * Date.now()"
+        :key="image.id"
         class="cover"
       >
         <img
           :id="'image-' + index"
           :src="image.previewURL"
+          :alt="image.tags"
           v-is-intersecting:[image.webformatURL].unique="loadImage"
         />
       </div>
     </div>
-    <div v-is-intersecting.instant="fetchImages" class="flex">
-      <spinner v-if="getLoader"></spinner>
-    </div>
+    <spinner :show="getLoader" @is-loading="fetchImages"></spinner>
   </div>
 </template>
 <script lang="ts">
@@ -26,16 +25,16 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "lazy-images",
   components: {
-    Spinner
+    Spinner,
   },
   methods: {
     ...mapActions(["fetchImages"]),
     loadImage(e: HTMLImageElement, callback: string) {
       e.setAttribute("src", callback);
-    }
+    },
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"])
-  }
+    ...mapGetters(["getImages", "getReady", "getLoader"]),
+  },
 });
 </script>

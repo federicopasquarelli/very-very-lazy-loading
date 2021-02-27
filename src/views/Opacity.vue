@@ -6,19 +6,18 @@
     <div class="grid-container" v-if="getReady">
       <div
         v-for="(image, index) in getImages"
-        :key="image.id * Date.now()"
+        :key="image.id"
         class="cover"
       >
         <img
           :id="'image-' + index"
           :src="image.previewURL"
+          :alt="image.tags"
           v-is-intersecting:[image.webformatURL].unique="loadImage"
         />
       </div>
     </div>
-    <div v-is-intersecting.instant="fetchImages" class="flex">
-      <spinner v-if="getLoader"></spinner>
-    </div>
+    <spinner :show="getLoader" @is-loading="fetchImages"></spinner>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "Opacity",
   components: {
-    Spinner
+    Spinner,
   },
   methods: {
     ...mapActions(["fetchImages"]),
@@ -38,11 +37,11 @@ export default Vue.extend({
       e.setAttribute("src", callback);
       e.style.opacity = "1";
       e.style.filter = "invert(0%)";
-    }
+    },
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"])
-  }
+    ...mapGetters(["getImages", "getReady", "getLoader"]),
+  },
 });
 </script>
 

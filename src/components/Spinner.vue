@@ -1,8 +1,10 @@
 <template>
-  <div class="spinner">
-    <div class="spinner-item"></div>
-    <div class="spinner-item"></div>
-    <div class="spinner-item"></div>
+  <div v-is-intersecting.instant="spin" class="flex spinner-wrapper">
+    <div class="spinner">
+      <div class="spinner-item"></div>
+      <div class="spinner-item"></div>
+      <div class="spinner-item"></div>
+    </div>
   </div>
 </template>
 
@@ -10,12 +12,28 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "Spinner"
+  name: "Spinner",
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    spin() {
+      this.$emit("is-loading");
+    },
+  },
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.spinner-wrapper {
+  height: 75px;
+  width: 75px;
+  margin: 50px auto;
+}
 .spinner {
   --size: 75px;
   --clr-bg: #272324;

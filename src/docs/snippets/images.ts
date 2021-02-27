@@ -4,7 +4,7 @@ export default `
     <div class="grid-container" v-if="ready">
       <div
         v-for="(image, index) in images"
-        :key="image.id * Date.now()"
+        :key="image.id"
         class="cover"
       >
         <img
