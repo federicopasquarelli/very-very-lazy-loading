@@ -1,7 +1,7 @@
 <template>
   <div class="code" v-is-intersecting.instant="showCode">
     <template v-if="code">
-      <highlightjs autodetect :code="code" />
+      <highlightjs language="xml" :code="code" />
     </template>
   </div>
 </template>
@@ -14,19 +14,19 @@ export default Vue.extend({
   props: {
     code: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
-      show: false
+      show: false,
     };
   },
   methods: {
     showCode() {
       this.show = true;
-    }
-  }
+    },
+  },
 });
 </script>
 
