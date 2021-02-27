@@ -10,7 +10,7 @@
       </h4>
       <p>
         this Modifier triggers the callback immediately when the entry is
-        intersecting, when the user scroll fast it can cause many triggers
+        intersecting, when the user scrolls fast it can cause many triggers
         together
       </p>
     </div>
