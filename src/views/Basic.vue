@@ -2,7 +2,6 @@
   <div class="main-content">
     <div class="title">
       <h1>custom callback lazy loading</h1>
-      <p>test description</p>
     </div>
     <snippet :code="code" />
     <zoom />
