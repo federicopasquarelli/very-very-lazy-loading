@@ -110,5 +110,6 @@ img {
   width: 800px;
   max-width: 100%;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 </style>

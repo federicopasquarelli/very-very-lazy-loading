@@ -9,7 +9,6 @@
       </div>
     </div>
     <div v-is-intersecting.instant="fetchBlocks" class="flex">
-      <br />
       <spinner v-if="loader"></spinner>
     </div>
   </div>
