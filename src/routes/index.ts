@@ -4,7 +4,6 @@ import Opacity from "@/views/Opacity.vue";
 import About from "@/views/About.vue";
 import Instant from "@/views/Instant.vue";
 import Basic from "@/views/Basic.vue";
-import Page from "@/views/Page.vue";
 
 export default [
   { path: "/", component: Images },

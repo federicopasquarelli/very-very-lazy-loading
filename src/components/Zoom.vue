@@ -8,7 +8,7 @@
         ></div>
       </div>
     </div>
-    <div v-is-intersecting.instant="fetchImages" class="flex">
+    <div v-is-intersecting.instant="fetchBlocks" class="flex">
       <br />
       <spinner v-if="loader"></spinner>
     </div>
@@ -30,7 +30,7 @@ export default Vue.extend({
     Spinner
   },
   methods: {
-    fetchImages() {
+    fetchBlocks() {
       this.loader = true;
       setTimeout(() => {
         this.blocks.push(...Array(100).fill({ visible: false }));
