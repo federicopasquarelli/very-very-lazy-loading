@@ -18,7 +18,7 @@ import Spinner from "@/components/Spinner.vue";
 export default Vue.extend({
   data() {
     return {
-      blocks: Array(100).fill({ visible: false }),
+      blocks: Array(0).fill({ visible: false }),
       loader: false,
       ready: false
     };

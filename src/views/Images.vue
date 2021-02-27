@@ -3,7 +3,6 @@
     <div class="title">
       <h1>image lazy loading</h1>
     </div>
-    <h3>Component usage</h3>
     <snippet :code="code" />
     <snippet :code="spinner" />
     <lazy-images></lazy-images>

@@ -1,7 +1,7 @@
 export default `
 <template>
   <div v-is-intersecting.instant="spin" class="flex spinner-wrapper">
-    <div class="spinner">
+    <div class="spinner" v-show="show">
       <div class="spinner-item"></div>
       <div class="spinner-item"></div>
       <div class="spinner-item"></div>
