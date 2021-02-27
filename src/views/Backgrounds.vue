@@ -14,8 +14,8 @@ import LazyBackgrounds from "@/components/LazyBackgrounds.vue";
 export default Vue.extend({
   name: "Backgrounds",
   components: {
-    LazyBackgrounds,
-  },
+    LazyBackgrounds
+  }
 });
 </script>
 

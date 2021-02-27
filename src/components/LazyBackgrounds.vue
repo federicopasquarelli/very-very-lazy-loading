@@ -27,14 +27,14 @@ import Spinner from "@/components/Spinner.vue";
 export default Vue.extend({
   name: "LazyBackgrounds",
   components: {
-    Spinner,
+    Spinner
   },
   data() {
     return {
       images: [] as any[],
       ready: false,
       page: 0,
-      loader: false,
+      loader: false
     };
   },
   methods: {
@@ -44,18 +44,18 @@ export default Vue.extend({
       await fetch(
         `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=200&page=${this.page}&image_type=photo`
       )
-        .then((response) => response.json())
-        .then((response) => {
+        .then(response => response.json())
+        .then(response => {
           this.images.push(...response.hits);
           if (!this.ready) this.ready = true;
           this.loader = false;
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
     loadBackground(e: HTMLElement, callback: string) {
       e.style.backgroundImage = `url(${callback})`;
-    },
-  },
+    }
+  }
 });
 </script>
 

@@ -6,27 +6,27 @@ export const store = new Vuex.Store({
   state: {
     page: {
       title: "",
-      content: [],
-    },
+      content: []
+    }
   },
   mutations: {
     setPageContent(state, pl) {
       state.page = pl;
-    },
+    }
   },
   actions: {
     async fetchPageContent(context) {
       await fetch(`${process.env.VUE_APP_API}/features`)
-        .then((response) => response.json())
-        .then((response) => {
+        .then(response => response.json())
+        .then(response => {
           context.commit("setPageContent", response);
         })
-        .catch((err) => console.log(err));
-    },
+        .catch(err => console.log(err));
+    }
   },
   getters: {
-    getPageContent: (state) => {
+    getPageContent: state => {
       return state.page;
-    },
-  },
+    }
+  }
 });

@@ -14,19 +14,19 @@ export default Vue.extend({
   props: {
     code: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   data() {
     return {
-      show: false,
+      show: false
     };
   },
   methods: {
     showCode() {
       this.show = true;
-    },
-  },
+    }
+  }
 });
 </script>
 

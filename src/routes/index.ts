@@ -12,5 +12,5 @@ export default [
   { path: "/opacity", component: Opacity },
   { path: "/about", component: About },
   { path: "/instant", component: Instant },
-  { path: "/basic", component: Basic },
+  { path: "/basic", component: Basic }
 ];

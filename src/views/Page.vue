@@ -29,10 +29,9 @@ export default Vue.extend({
   watch: {
     $route: function(to, from) {
       console.log("update", to, from);
-    },
+    }
   },
-  methods: {
-  },
+  methods: {}
 });
 </script>
 

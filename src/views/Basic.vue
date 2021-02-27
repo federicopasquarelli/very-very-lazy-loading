@@ -19,12 +19,12 @@ export default Vue.extend({
   name: "Basics",
   components: {
     Snippet,
-    Zoom,
+    Zoom
   },
   data() {
     return {
-      code: codesnippet,
+      code: codesnippet
     };
-  },
+  }
 });
 </script>

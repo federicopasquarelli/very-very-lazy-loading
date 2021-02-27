@@ -10,7 +10,7 @@ const params = {
   instant: new WeakMap(),
   uniques: new WeakMap(),
   callbacks: new WeakMap(),
-  current: new WeakMap(),
+  current: new WeakMap()
 };
 const clear = (el: Element) => {
   if (!counter.get(el)) return;
@@ -103,5 +103,5 @@ export const isIntersecting = {
   },
   unbind: function(el) {
     observer.unobserve(el);
-  },
+  }
 } as DirectiveOptions;

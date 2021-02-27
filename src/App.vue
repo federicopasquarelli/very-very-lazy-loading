@@ -39,8 +39,8 @@ import Scroll from "@/components/Scroll.vue";
 export default Vue.extend({
   name: "App",
   components: {
-    Scroll,
-  },
+    Scroll
+  }
 });
 </script>
 

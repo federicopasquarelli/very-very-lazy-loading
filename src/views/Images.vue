@@ -18,12 +18,12 @@ export default Vue.extend({
   name: "Images",
   components: {
     LazyImages,
-    Snippet,
+    Snippet
   },
   data() {
     return {
-      code: codesnippet,
+      code: codesnippet
     };
-  },
+  }
 });
 </script>

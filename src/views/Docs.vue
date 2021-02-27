@@ -5,8 +5,7 @@
         Documentation
       </h1>
     </div>
-    <div class="grid-container">
-    </div>
+    <div class="grid-container"></div>
   </div>
 </template>
 
@@ -20,10 +19,9 @@ export default Vue.extend({
       images: [] as any[],
       ready: false,
       page: 0,
-      loader: false,
+      loader: false
     };
   },
-  methods: {
-  },
+  methods: {}
 });
 </script>

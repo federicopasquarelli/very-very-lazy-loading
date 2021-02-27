@@ -23,11 +23,11 @@ export default Vue.extend({
     return {
       blocks: Array(100).fill({ visible: false }),
       loader: false,
-      ready: false,
+      ready: false
     };
   },
   components: {
-    Spinner,
+    Spinner
   },
   methods: {
     fetchImages() {
@@ -42,8 +42,8 @@ export default Vue.extend({
     },
     unloadBackground(e: HTMLElement) {
       e.classList.remove("zoom-in");
-    },
-  },
+    }
+  }
 });
 </script>
 <style lang="scss" scoped>
