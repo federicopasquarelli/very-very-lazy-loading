@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid-container">
-      <div v-for="(image, index) in images" :key="index" class="cover">
+      <div v-for="(block, index) in blocks" :key="index" class="cover">
         <div
           class="full"
           v-is-intersecting:[index].current="[loadBackground, unloadBackground]"
@@ -21,7 +21,7 @@ import Spinner from "@/components/Spinner.vue";
 export default Vue.extend({
   data() {
     return {
-      images: Array(100).fill({ visible: false }),
+      blocks: Array(100).fill({ visible: false }),
       loader: false,
       ready: false,
     };
@@ -33,7 +33,7 @@ export default Vue.extend({
     fetchImages() {
       this.loader = true;
       setTimeout(() => {
-        this.images.push(...Array(100).fill({ visible: false }));
+        this.blocks.push(...Array(100).fill({ visible: false }));
         this.loader = false;
       }, 500);
     },

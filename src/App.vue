@@ -109,4 +109,9 @@ img {
   height: 100%;
   object-fit: cover;
 }
+.main-content {
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+}
 </style>

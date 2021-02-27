@@ -2,7 +2,7 @@ export default `
 <template>
   <div>
     <div class="grid-container">
-      <div v-for="(image, index) in images" :key="index" class="cover">
+      <div v-for="(block, index) in blocks" :key="index" class="cover">
         <div
           class="full"
           v-is-intersecting:[index].current="[loadBackground, unloadBackground]"
@@ -10,6 +10,7 @@ export default `
       </div>
     </div>
     <div v-is-intersecting.instant="fetchImages" class="flex">
+      <br />
       <spinner v-if="loader"></spinner>
     </div>
   </div>
@@ -21,7 +22,7 @@ import Spinner from "@/components/Spinner.vue";
 export default Vue.extend({
   data() {
     return {
-      images: Array(100).fill({ visible: false }),
+      blocks: Array(100).fill({ visible: false }),
       loader: false,
       ready: false,
     };
@@ -33,7 +34,7 @@ export default Vue.extend({
     fetchImages() {
       this.loader = true;
       setTimeout(() => {
-        this.images = [this.images, ...Array(100).fill({ visible: false })];
+        this.blocks.push(...Array(100).fill({ visible: false }));
         this.loader = false;
       }, 500);
     },

@@ -28,11 +28,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.main-content {
-  width: 800px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-</style>
