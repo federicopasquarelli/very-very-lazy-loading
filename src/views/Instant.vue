@@ -20,6 +20,7 @@
           :id="'image-' + index"
           :src="image.previewURL"
           :alt="image.tags"
+          loading="lazy"
           v-is-intersecting:[image.webformatURL].unique.instant="loadImage"
         />
       </div>
