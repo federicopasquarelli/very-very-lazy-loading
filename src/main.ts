@@ -8,6 +8,7 @@ import hljs from "highlight.js";
 import xml from "highlight.js/lib/languages/xml";
 import { store } from "@/store";
 import "@/scss/main.scss";
+
 hljs.registerLanguage("xml", xml);
 Vue.use(hljs.vuePlugin);
 Vue.use(VueRouter);
