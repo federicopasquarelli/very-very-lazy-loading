@@ -1,7 +1,7 @@
 # lazyloading
 
 ## Demo
-<a href="http://verylazyloading.herokuapp.com/" target="_blank">http://verylazyloading.herokuapp.com/</a>
+[http://verylazyloading.herokuapp.com/](http://verylazyloading.herokuapp.com/)
 
 ## Project setup
 ```
