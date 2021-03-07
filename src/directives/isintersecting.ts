@@ -10,7 +10,7 @@ const params = {
   instant: new WeakMap(),
   uniques: new WeakMap(),
   callbacks: new WeakMap(),
-  current: new WeakMap()
+  current: new WeakMap(),
 };
 const clear = (el: Element) => {
   if (!counter.get(el)) return;
@@ -90,27 +90,32 @@ const observer = new IntersectionObserver((entries, self) => {
     );
   });
 });
-
+const setInitialParams = (el: HTMLElement, binding: any) => {
+  params.callbacks.set(el, binding.arg);
+  params.instant.set(el, binding.modifiers.instant);
+  params.uniques.set(el, binding.modifiers.unique);
+  params.current.set(el, binding.modifiers.current);
+  params.debouncers.set(el, uuidv4());
+  params.handlers.set(el, binding.value);
+};
+const removeParams = (el: HTMLElement) => {
+  params.callbacks.delete(el);
+  params.instant.delete(el);
+  params.uniques.delete(el);
+  params.current.delete(el);
+  params.debouncers.delete(el);
+  params.handlers.delete(el);
+  counter.delete(el);
+  reverseCounter.delete(el);
+  wasIntersecting.delete(el);
+};
 export const isIntersecting = {
   bind: function(el, binding) {
-    params.callbacks.set(el, binding.arg);
-    params.instant.set(el, binding.modifiers.instant);
-    params.uniques.set(el, binding.modifiers.unique);
-    params.current.set(el, binding.modifiers.current);
-    params.debouncers.set(el, uuidv4());
-    params.handlers.set(el, binding.value);
+    setInitialParams(el, binding);
     observer.observe(el);
   },
   unbind: function(el) {
-    params.callbacks.delete(el);
-    params.instant.delete(el);
-    params.uniques.delete(el);
-    params.current.delete(el);
-    params.debouncers.delete(el);
-    params.handlers.delete(el);
-    counter.delete(el);
-    reverseCounter.delete(el);
-    wasIntersecting.delete(el);
+    removeParams(el);
     observer.unobserve(el);
-  }
+  },
 } as DirectiveOptions;
