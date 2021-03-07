@@ -1,36 +1,36 @@
 const Images = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "images" */ "@/views/Images.vue"
   );
 const Backgrounds = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "backgrounds" */ "@/views/Backgrounds.vue"
   );
 const Opacity = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "opacity" */ "@/views/Opacity.vue"
   );
 const About = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "about" */ "@/views/About.vue"
   );
 const Instant = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "instant" */ "@/views/Instant.vue"
   );
 const Basic = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "basic" */ "@/views/Basic.vue"
   );
 const IframeView = () =>
   import(
-    /* webpackPreload: true */
+    /* webpackPrefetch: true */
     /* webpackChunkName: "iframe-view" */ "@/views/Iframe.vue"
   );
 
