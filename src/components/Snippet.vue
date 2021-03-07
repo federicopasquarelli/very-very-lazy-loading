@@ -15,7 +15,7 @@ export default Vue.extend({
     code: {
       type: String,
       default: ""
-    },
+    }
   },
   data() {
     return {

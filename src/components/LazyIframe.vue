@@ -23,16 +23,16 @@ export default Vue.extend({
     },
     loadIframe(): void {
       this.loaded = true;
-    },
+    }
   },
   data() {
     return {
-      loaded: false,
+      loaded: false
     };
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"]),
-  },
+    ...mapGetters(["getImages", "getReady", "getLoader"])
+  }
 });
 </script>
 <style lang="scss" scoped>
