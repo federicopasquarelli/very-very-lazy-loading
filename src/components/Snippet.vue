@@ -1,5 +1,5 @@
 <template>
-  <div class="code" v-is-intersecting.instant="showCode">
+  <div class="code" v-is-intersecting.unique.instant="showCode">
     <template v-if="show">
       <highlightjs language="xml" :code="code" />
     </template>

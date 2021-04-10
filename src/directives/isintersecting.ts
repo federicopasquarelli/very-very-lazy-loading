@@ -73,7 +73,7 @@ const observer = new IntersectionObserver((entries, self) => {
     // if the entry has the instant modifier we execute the callback immediately
     // we need to apply this behaviour by default without the modifier
     if (instant) {
-      execute(entry.target);
+      execute(entry.target, self);
     }
 
     // skip the setTimeout in case the entry is instant
