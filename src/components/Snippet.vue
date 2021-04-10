@@ -1,6 +1,6 @@
 <template>
   <div class="code" v-is-intersecting.instant="showCode">
-    <template v-if="code">
+    <template v-if="show">
       <highlightjs language="xml" :code="code" />
     </template>
   </div>
