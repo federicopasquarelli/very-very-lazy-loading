@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 200vh">
-    <div class="embed-container" v-is-intersecting.unique="loadIframe">
+    <div class="embed-container" v-is-intersecting.instant.unique="loadIframe">
       <iframe
         v-if="loaded"
         src="https://www.youtube.com/embed/RM5hQ3Qtf-8"
@@ -18,9 +18,6 @@ export default Vue.extend({
   name: "lazy-iframe",
   methods: {
     ...mapActions(["fetchImages"]),
-    loadImage(e: HTMLImageElement, callback: string) {
-      e.setAttribute("src", callback);
-    },
     loadIframe(): void {
       this.loaded = true;
     }
