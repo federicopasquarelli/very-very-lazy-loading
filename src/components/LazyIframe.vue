@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 200vh">
-    <div class="embed-container" v-is-intersecting="loadIframe">
+    <div class="embed-container" v-is-intersecting.unique="loadIframe">
       <iframe
         v-if="loaded"
         src="https://www.youtube.com/embed/RM5hQ3Qtf-8"
