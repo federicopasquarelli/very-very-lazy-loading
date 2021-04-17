@@ -1,3 +1,4 @@
+import Vue, { VueConstructor } from "vue";
 import { v4 as uuidv4 } from "uuid";
 import { DirectiveOptions } from "vue/types/umd";
 
@@ -10,7 +11,7 @@ const params = {
   instant: new WeakMap(),
   uniques: new WeakMap(),
   callbacks: new WeakMap(),
-  current: new WeakMap()
+  current: new WeakMap(),
 };
 const clear = (el: Element) => {
   if (!counter.get(el)) return;
@@ -39,7 +40,7 @@ const execute = (el: Element, self?: IntersectionObserver) => {
   }
   if (isUnique && self) unobserve(el, self);
 };
-const executeCurrent = (el: Element) => {
+const executeReverse = (el: Element) => {
   const sendResponse = params.handlers.get(el);
   const getCallback = params.callbacks.get(el);
   const current = params.current.get(el);
@@ -55,13 +56,13 @@ const observer = new IntersectionObserver((entries, self) => {
     if (!entry.isIntersecting) {
       if (wasIntersecting.get(entry.target)) {
         if (instant) {
-          executeCurrent(entry.target);
+          executeReverse(entry.target);
         }
         if (reverseCounter.get(entry.target) || instant) return;
         reverseCounter.set(
           entry.target,
           setTimeout(() => {
-            executeCurrent(entry.target);
+            executeReverse(entry.target);
             clearReverse(entry.target);
           }, 500)
         );
@@ -109,7 +110,7 @@ const removeParams = (el: HTMLElement) => {
   reverseCounter.delete(el);
   wasIntersecting.delete(el);
 };
-export const isIntersecting = {
+const isIntersecting = {
   bind: function(el, binding) {
     setInitialParams(el, binding);
     observer.observe(el);
@@ -117,5 +118,10 @@ export const isIntersecting = {
   unbind: function(el) {
     removeParams(el);
     observer.unobserve(el);
-  }
+  },
 } as DirectiveOptions;
+export default {
+  install(Vue: VueConstructor) {
+    Vue.directive("is-intersecting", isIntersecting);
+  },
+};
