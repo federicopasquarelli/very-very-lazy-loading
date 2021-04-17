@@ -15,7 +15,7 @@ import LazyIframe from "@/components/LazyIframe.vue";
 export default Vue.extend({
   name: "IframeView",
   components: {
-    LazyIframe,
-  },
+    LazyIframe
+  }
 });
 </script>

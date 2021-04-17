@@ -1,4 +1,4 @@
-import Vue, { VueConstructor } from "vue";
+import { VueConstructor } from "vue";
 import { v4 as uuidv4 } from "uuid";
 import { DirectiveOptions } from "vue/types/umd";
 
@@ -11,7 +11,7 @@ const params = {
   instant: new WeakMap(),
   uniques: new WeakMap(),
   callbacks: new WeakMap(),
-  current: new WeakMap(),
+  current: new WeakMap()
 };
 const clear = (el: Element) => {
   if (!counter.get(el)) return;
@@ -118,10 +118,10 @@ const isIntersecting = {
   unbind: function(el) {
     removeParams(el);
     observer.unobserve(el);
-  },
+  }
 } as DirectiveOptions;
 export default {
   install(Vue: VueConstructor) {
     Vue.directive("is-intersecting", isIntersecting);
-  },
+  }
 };
