@@ -20,7 +20,6 @@
           :id="'image-' + index"
           :src="image.previewURL"
           :alt="image.tags"
-          loading="lazy"
           v-is-intersecting:[image.webformatURL].unique.instant="loadImage"
         />
       </div>
@@ -37,17 +36,17 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "Instant",
   components: {
-    Spinner
+    Spinner,
   },
   methods: {
     ...mapActions(["fetchImages"]),
     loadImage(e: HTMLImageElement, callback: string) {
       e.setAttribute("src", callback);
-    }
+    },
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"])
-  }
+    ...mapGetters(["getImages", "getReady", "getLoader"]),
+  },
 });
 </script>
 

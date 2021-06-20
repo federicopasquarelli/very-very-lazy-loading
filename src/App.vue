@@ -39,8 +39,8 @@ import Scroll from "@/components/Scroll.vue";
 export default Vue.extend({
   name: "App",
   components: {
-    Scroll
-  }
+    Scroll,
+  },
 });
 </script>
 
@@ -88,7 +88,7 @@ export default Vue.extend({
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2px;
+  grid-gap: 5px;
   text-align: center;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
