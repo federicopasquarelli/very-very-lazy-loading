@@ -48,7 +48,6 @@ export const store = new Vuex.Store({
         })
         .catch(err => {
           commit("setLoader", false);
-          console.log(err);
         });
     }
   },
