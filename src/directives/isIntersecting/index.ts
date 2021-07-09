@@ -5,6 +5,7 @@ import { DirectiveOptions } from "vue/types/umd";
 const counter = new WeakMap();
 const reverseCounter = new WeakMap();
 const wasIntersecting = new WeakMap();
+
 const params = {
   handlers: new WeakMap(),
   debouncers: new WeakMap(),
@@ -13,19 +14,14 @@ const params = {
   callbacks: new WeakMap(),
   current: new WeakMap()
 };
-const clear = (el: Element) => {
+const clear = (el: Element, counter: any) => {
   if (!counter.get(el)) return;
   clearTimeout(counter.get(el));
   counter.delete(el);
 };
-const clearReverse = (el: Element) => {
-  if (!reverseCounter.get(el)) return;
-  clearTimeout(reverseCounter.get(el));
-  reverseCounter.delete(el);
-};
 const unobserve = (target: Element, observer: IntersectionObserver) => {
   observer.unobserve(target);
-  clear(target);
+  clear(target, counter);
 };
 const execute = (el: Element, self?: IntersectionObserver) => {
   const isUnique = params.uniques.get(el);
@@ -63,11 +59,11 @@ const observer = new IntersectionObserver((entries, self) => {
           entry.target,
           setTimeout(() => {
             executeReverse(entry.target);
-            clearReverse(entry.target);
+            clear(entry.target, reverseCounter);
           }, 500)
         );
       }
-      clear(entry.target);
+      clear(entry.target, counter);
       return;
     }
 
@@ -86,7 +82,7 @@ const observer = new IntersectionObserver((entries, self) => {
       entry.target,
       setTimeout(() => {
         execute(entry.target, self);
-        clear(entry.target);
+        clear(entry.target, counter);
       }, 500)
     );
   });
