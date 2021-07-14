@@ -5,9 +5,9 @@ export default `
       <div v-for="(image, index) in getImages" :key="image.id" class="cover">
         <img
           :id="'image-' + index"
-          :src="image.previewURL"
+          :src="image.urls.thumb"
           :alt="image.tags"
-          v-is-intersecting:[image.webformatURL].unique="loadImage"
+          v-is-intersecting:[image.urls.small].unique="loadImage"
         />
       </div>
     </div>

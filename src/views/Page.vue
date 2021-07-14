@@ -26,12 +26,6 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "Opacity",
-  watch: {
-    $route: function(to, from) {
-      console.log("update", to, from);
-    }
-  },
-  methods: {}
 });
 </script>
 

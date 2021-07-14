@@ -1,38 +1,15 @@
 const Images = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "images" */ "@/views/Images.vue"
-  );
+  import(/* webpackChunkName: "images" */ "@/views/Images.vue");
 const Backgrounds = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "backgrounds" */ "@/views/Backgrounds.vue"
-  );
+  import(/* webpackChunkName: "backgrounds" */ "@/views/Backgrounds.vue");
 const Opacity = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "opacity" */ "@/views/Opacity.vue"
-  );
-const About = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "about" */ "@/views/About.vue"
-  );
+  import(/* webpackChunkName: "opacity" */ "@/views/Opacity.vue");
+const About = () => import(/* webpackChunkName: "about" */ "@/views/About.vue");
 const Instant = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "instant" */ "@/views/Instant.vue"
-  );
-const Basic = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "basic" */ "@/views/Basic.vue"
-  );
+  import(/* webpackChunkName: "instant" */ "@/views/Instant.vue");
+const Basic = () => import(/* webpackChunkName: "basic" */ "@/views/Basic.vue");
 const IframeView = () =>
-  import(
-    /* webpackPreload: true */
-    /* webpackChunkName: "iframe-view" */ "@/views/Iframe.vue"
-  );
+  import(/* webpackChunkName: "iframe-view" */ "@/views/Iframe.vue");
 
 export default [
   { path: "/", component: Images },
@@ -41,5 +18,5 @@ export default [
   { path: "/about", component: About },
   { path: "/instant", component: Instant },
   { path: "/basic", component: Basic },
-  { path: "/iframe", component: IframeView }
+  { path: "/iframe", component: IframeView },
 ];

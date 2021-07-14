@@ -2,20 +2,17 @@ import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
 
-const getDefaultState = () => {
-  return {
-    page: 0,
-    loader: false,
-    images: [] as any[],
-    ready: false
-  };
-};
-
-// initial state
-const state = getDefaultState();
+interface Image {
+  urls: Record<string, string>;
+}
 
 export const store = new Vuex.Store({
-  state,
+  state: {
+    page: 0,
+    loader: false,
+    images: [] as Image[],
+    ready: false,
+  },
   mutations: {
     setPage(state) {
       state.page++;
@@ -30,39 +27,42 @@ export const store = new Vuex.Store({
       state.ready = pl;
     },
     setReset(state) {
-      state = { ...getDefaultState() };
-    }
+      state.images = [];
+      state.page = 0;
+      state.ready = false;
+      state.loader = false;
+    },
   },
   actions: {
-    async fetchImages({ commit, getters }) {
+    fetchImages({ commit, getters }) {
       commit("setPage");
       commit("setLoader", true);
-      await fetch(
-        `https://pixabay.com/api/?key=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=100&page=${getters.getPage}&image_type=photo&category=places`
+      fetch(
+        `https://api.unsplash.com/photos/?client_id=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=100&page=${getters.getPage}`
       )
-        .then(response => response.json())
-        .then(response => {
-          commit("setImages", response.hits);
+        .then((response) => response.json())
+        .then((response) => {
+          commit("setImages", response);
           if (!getters.getReady) commit("setReady", true);
           commit("setLoader", false);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoader", false);
         });
-    }
+    },
   },
   getters: {
-    getImages: state => {
+    getImages: (state) => {
       return state.images;
     },
-    getPage: state => {
+    getPage: (state) => {
       return state.page;
     },
-    getReady: state => {
+    getReady: (state) => {
       return state.ready;
     },
-    getLoader: state => {
+    getLoader: (state) => {
       return state.loader;
-    }
-  }
+    },
+  },
 });

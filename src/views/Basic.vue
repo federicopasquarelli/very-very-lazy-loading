@@ -12,21 +12,21 @@
 <script lang="ts">
 import Vue from "vue";
 import Snippet from "@/components/Snippet.vue";
-import codesnippet from "@/docs/snippets/basic.ts";
-import spinnersnippet from "@/docs/snippets/spinner.ts";
+import codesnippet from "@/docs/snippets/basic";
+import spinnersnippet from "@/docs/snippets/spinner";
 import Zoom from "@/components/Zoom.vue";
 
 export default Vue.extend({
   name: "Basics",
   components: {
     Snippet,
-    Zoom
+    Zoom,
   },
   data() {
     return {
       code: codesnippet,
-      spinner: spinnersnippet
+      spinner: spinnersnippet,
     };
-  }
+  },
 });
 </script>

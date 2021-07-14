@@ -5,8 +5,8 @@
         <div
           :id="`image-${index}`"
           class="full bg-cover"
-          :style="`background-image: url(${image.previewURL})`"
-          v-is-intersecting:[image.webformatURL].unique="loadBackground"
+          :style="`background-image: url(${image.urls.thumb})`"
+          v-is-intersecting:[image.urls.small].unique="loadBackground"
         ></div>
       </div>
     </div>
@@ -22,17 +22,17 @@ import { mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "LazyBackgrounds",
   components: {
-    Spinner
+    Spinner,
   },
   methods: {
     ...mapActions(["fetchImages"]),
     loadBackground(e: HTMLElement, callback: string) {
       e.style.backgroundImage = `url(${callback})`;
-    }
+    },
   },
   computed: {
-    ...mapGetters(["getImages", "getReady", "getLoader"])
-  }
+    ...mapGetters(["getImages", "getReady", "getLoader"]),
+  },
 });
 </script>
 

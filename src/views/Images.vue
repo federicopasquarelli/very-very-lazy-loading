@@ -12,21 +12,21 @@
 <script lang="ts">
 import Vue from "vue";
 import LazyImages from "@/components/LazyImages.vue";
-import codesnippet from "@/docs/snippets/images.ts";
-import spinnersnippet from "@/docs/snippets/spinner.ts";
+import codesnippet from "@/docs/snippets/images";
+import spinnersnippet from "@/docs/snippets/spinner";
 import Snippet from "@/components/Snippet.vue";
 
 export default Vue.extend({
   name: "Images",
   components: {
     LazyImages,
-    Snippet
+    Snippet,
   },
   data() {
     return {
       code: codesnippet,
-      spinner: spinnersnippet
+      spinner: spinnersnippet,
     };
-  }
+  },
 });
 </script>
