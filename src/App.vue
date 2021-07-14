@@ -19,10 +19,10 @@
             <router-link to="/basic">Basic</router-link>
           </li>
           <li>
-            <router-link to="/about">About</router-link>
+            <router-link to="/iframe">Iframe</router-link>
           </li>
           <li>
-            <router-link to="/iframe">Iframe</router-link>
+            <router-link to="/about">About</router-link>
           </li>
         </ul>
       </div>
@@ -39,8 +39,8 @@ import Scroll from "@/components/Scroll.vue";
 export default Vue.extend({
   name: "App",
   components: {
-    Scroll
-  }
+    Scroll,
+  },
 });
 </script>
 
