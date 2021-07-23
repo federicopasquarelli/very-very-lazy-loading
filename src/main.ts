@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
-import IsIntersecting from "@/directives/isIntersecting";
+import IsIntersecting from "vue-is-intersecting";
 import routes from "@/routes";
 import hljs from "highlight.js";
 import xml from "highlight.js/lib/languages/xml";
@@ -15,7 +15,7 @@ Vue.use(IsIntersecting);
 Vue.config.productionTip = false;
 
 const router = new VueRouter({
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
@@ -26,5 +26,5 @@ router.beforeEach((to, from, next) => {
 new Vue({
   store,
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
