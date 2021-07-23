@@ -1,11 +1,10 @@
 <template>
   <div>
     <div class="grid-container" v-if="getReady">
-      <div v-for="(image, index) in getImages" :key="image.id" class="cover">
+      <div v-for="image in getImages" :key="image.id" class="cover">
         <img
-          :id="'image-' + index"
           :src="image.urls.thumb"
-          :alt="image.tags"
+          :alt="image.alt_description"
           v-is-intersecting:[image.urls.small].unique="loadImage"
         />
       </div>

@@ -12,7 +12,7 @@ const params = {
   instant: new WeakMap(),
   uniques: new WeakMap(),
   callbacks: new WeakMap(),
-  current: new WeakMap()
+  current: new WeakMap(),
 };
 const clear = (el: Element, counter: any) => {
   if (!counter.get(el)) return;
@@ -28,21 +28,27 @@ const execute = (el: Element, self?: IntersectionObserver) => {
   const getCallback = params.callbacks.get(el);
   const sendResponse = params.handlers.get(el);
   const current = params.current.get(el);
-  if (!wasIntersecting.get(el)) wasIntersecting.set(el, true);
+  if (self && !wasIntersecting.get(el)) wasIntersecting.set(el, true);
   if (current) {
-    sendResponse[0](el, getCallback);
+    sendResponse[self ? 0 : 1](el, getCallback);
   } else {
     sendResponse(el, getCallback);
   }
   if (isUnique && self) unobserve(el, self);
 };
-const executeReverse = (el: Element) => {
-  const sendResponse = params.handlers.get(el);
-  const getCallback = params.callbacks.get(el);
-  const current = params.current.get(el);
-  if (current) {
-    sendResponse[1](el, getCallback);
-  }
+const setCounter = (
+  reverse: boolean,
+  target: Element,
+  self?: IntersectionObserver
+) => {
+  const setter = reverse ? reverseCounter : counter;
+  setter.set(
+    target,
+    setTimeout(() => {
+      execute(target, self);
+      clear(target, setter);
+    }, 500)
+  );
 };
 const observer = new IntersectionObserver((entries, self) => {
   entries.forEach((entry: IntersectionObserverEntry) => {
@@ -51,17 +57,9 @@ const observer = new IntersectionObserver((entries, self) => {
     // if is not intersecting clear the entry timeout for the lazyloader
     if (!entry.isIntersecting) {
       if (wasIntersecting.get(entry.target)) {
-        if (instant) {
-          executeReverse(entry.target);
-        }
+        if (instant) execute(entry.target);
         if (reverseCounter.get(entry.target) || instant) return;
-        reverseCounter.set(
-          entry.target,
-          setTimeout(() => {
-            executeReverse(entry.target);
-            clear(entry.target, reverseCounter);
-          }, 500)
-        );
+        setCounter(true, entry.target);
       }
       clear(entry.target, counter);
       return;
@@ -75,16 +73,7 @@ const observer = new IntersectionObserver((entries, self) => {
 
     // skip the setTimeout in case the entry is instant
     if (counter.get(entry.target) || instant) return;
-
-    // debounce the callback, so it's only triggered if the element is intersecting for more than 500ms
-    // in case we don't want the callback to get triggered even after a very short intersection time
-    counter.set(
-      entry.target,
-      setTimeout(() => {
-        execute(entry.target, self);
-        clear(entry.target, counter);
-      }, 500)
-    );
+    setCounter(false, entry.target, self);
   });
 });
 const setInitialParams = (el: HTMLElement, binding: any) => {
@@ -114,10 +103,10 @@ const isIntersecting = {
   unbind: function(el) {
     removeParams(el);
     observer.unobserve(el);
-  }
+  },
 } as DirectiveOptions;
 export default {
   install(Vue: VueConstructor) {
     Vue.directive("is-intersecting", isIntersecting);
-  }
+  },
 };

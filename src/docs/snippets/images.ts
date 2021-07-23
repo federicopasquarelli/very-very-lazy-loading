@@ -6,7 +6,7 @@ export default `
         <img
           :id="'image-' + index"
           :src="image.urls.thumb"
-          :alt="image.tags"
+          :alt="image.alt_description"
           v-is-intersecting:[image.urls.small].unique="loadImage"
         />
       </div>
