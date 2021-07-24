@@ -19,6 +19,12 @@
           title="visit my github"
           target="_blank"
           >Visit My Github</a
+        ><br /><br />
+        <a
+          href="https://www.npmjs.com/package/vue-is-intersecting"
+          title="install the official plugin"
+          target="blank"
+          >Use this plugin</a
         >
       </div>
     </div>
@@ -29,7 +35,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "About"
+  name: "About",
 });
 </script>
 <style lang="scss" scoped>
