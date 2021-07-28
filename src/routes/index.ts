@@ -18,5 +18,5 @@ export default [
   { path: "/about", component: About },
   { path: "/instant", component: Instant },
   { path: "/basic", component: Basic },
-  { path: "/iframe", component: IframeView },
+  { path: "/iframe", component: IframeView }
 ];

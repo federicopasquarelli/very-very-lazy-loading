@@ -39,8 +39,8 @@ import Scroll from "@/components/Scroll.vue";
 export default Vue.extend({
   name: "App",
   components: {
-    Scroll,
-  },
+    Scroll
+  }
 });
 </script>
 
@@ -80,8 +80,6 @@ export default Vue.extend({
   h1 {
     font-weight: bold;
   }
-  h4 {
-  }
 }
 .grid-container {
   max-width: 800px;
@@ -102,9 +100,8 @@ export default Vue.extend({
 }
 img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

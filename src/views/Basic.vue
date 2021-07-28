@@ -20,13 +20,13 @@ export default Vue.extend({
   name: "Basics",
   components: {
     Snippet,
-    Zoom,
+    Zoom
   },
   data() {
     return {
       code: codesnippet,
-      spinner: spinnersnippet,
+      spinner: spinnersnippet
     };
-  },
+  }
 });
 </script>

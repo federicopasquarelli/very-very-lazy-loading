@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     page: 0,
     loader: false,
     images: [] as Image[],
-    ready: false,
+    ready: false
   },
   mutations: {
     setPage(state) {
@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
       state.page = 0;
       state.ready = false;
       state.loader = false;
-    },
+    }
   },
   actions: {
     fetchImages({ commit, getters }) {
@@ -40,29 +40,29 @@ export const store = new Vuex.Store({
       fetch(
         `https://api.unsplash.com/photos/?client_id=${process.env.VUE_APP_NOT_SECRET_CODE}&per_page=100&page=${getters.getPage}`
       )
-        .then((response) => response.json())
-        .then((response) => {
+        .then(response => response.json())
+        .then(response => {
           commit("setImages", response);
           if (!getters.getReady) commit("setReady", true);
           commit("setLoader", false);
         })
-        .catch((err) => {
+        .catch(err => {
           commit("setLoader", false);
         });
-    },
+    }
   },
   getters: {
-    getImages: (state) => {
+    getImages: state => {
       return state.images;
     },
-    getPage: (state) => {
+    getPage: state => {
       return state.page;
     },
-    getReady: (state) => {
+    getReady: state => {
       return state.ready;
     },
-    getLoader: (state) => {
+    getLoader: state => {
       return state.loader;
-    },
-  },
+    }
+  }
 });
